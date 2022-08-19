@@ -21,6 +21,8 @@ import { UploadComponent } from './components/upload/upload.component';
 import { FolderViewComponent } from './components/folder-view/folder-view.component';
 import { RenameDialogComponent } from './components/rename-dialog/rename-dialog.component';
 import {TokenInterceptor} from "./services/token.interceptor";
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const routes: Routes = [
@@ -51,7 +53,8 @@ const routes: Routes = [
     FileContextMenuComponent,
     UploadComponent,
     FolderViewComponent,
-    RenameDialogComponent
+    RenameDialogComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    DragToSelectModule.forRoot()
+    DragToSelectModule.forRoot(),
+    FontAwesomeModule
   ],
   exports: [
     RouterModule

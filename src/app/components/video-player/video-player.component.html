@@ -1,0 +1,10 @@
+<div class="col-8 video-player" (click)="onClick($event)">
+  <div class="row">
+    <video
+      [src]="videoUrl" controls
+      (error)="playerError($event)">
+      <source [src]="videoUrl">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>

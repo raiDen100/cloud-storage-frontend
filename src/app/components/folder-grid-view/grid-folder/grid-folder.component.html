@@ -12,14 +12,15 @@
     </div>
 </div> -->
 
-<div class="row" 
+<div class="row"
 (contextmenu)="onRightClick($event)"
 (click)="onClick($event)">
     <div class="col-12 folder-view" [className]="isSelected? 'selected': ''">
         <div class="row">
             <div class="col-12">
-    
-                <i class="fa-solid fa-folder fa-7x"></i>
+
+              <fa-icon [icon]="faFolderr"></fa-icon>
+<!--                <i class="fa-solid fa-folder fa-7x"></i>-->
             </div>
         </div>
         <div class="row">

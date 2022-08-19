@@ -1,7 +1,10 @@
-<router-outlet name="folder-view"></router-outlet>
-<app-folder-grid-view></app-folder-grid-view>
-<div class="col-2">
+<div class="" (click)="onClick($event)">
+  <router-outlet name="folder-view"></router-outlet>
+  <app-folder-grid-view></app-folder-grid-view>
+  <app-video-player [hidden]="!showVideoPlayer"></app-video-player>
+  <div class="col-2">
     <div class="row">
-        <app-upload></app-upload>
+      <app-upload></app-upload>
     </div>
+  </div>
 </div>

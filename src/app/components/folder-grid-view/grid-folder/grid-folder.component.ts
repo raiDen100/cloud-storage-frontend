@@ -5,6 +5,7 @@ import { SelectionService } from 'src/app/services/selection.service';
 import { UploadService } from 'src/app/services/upload.service';
 import {LoginServiceService} from "../../../services/login-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {faFolder} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-grid-folder',
@@ -25,6 +26,8 @@ export class GridFolderComponent implements OnInit {
 
   isSingleClick: boolean = false;
   isSelected:boolean = false;
+
+  faFolderr = faFolder;
 
 
   constructor(

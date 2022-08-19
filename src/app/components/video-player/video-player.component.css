@@ -1,0 +1,9 @@
+.video-player{
+  position: fixed;
+  width: 70%;
+  max-height: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -20%; /* Negative half of height. */
+  margin-left: -35%; /* Negative half of width. */
+}
