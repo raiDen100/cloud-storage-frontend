@@ -63,6 +63,7 @@ export class GridFileComponent implements OnInit {
 }
 
   onClick($event: MouseEvent) {
+    $event.stopPropagation();
     if (this.file.fileType.includes("video"))
       this.playerService.playVideo(this.file.id)
   }

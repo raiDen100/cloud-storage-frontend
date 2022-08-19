@@ -38,20 +38,12 @@ export class GridFolderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    // this.selectionService.selectedFolders.forEach((f) =>{
-    //     if(f.id === this.folder.id)
-    //       this.isSelected = true;
-    // })
-
   }
 
 
 
 
   onClick($event: MouseEvent){
-    //$event.stopPropagation()
-
-    //this.select()
 
     if(this.isSingleClick){
       this.onDoubleClick.emit(this.folder);

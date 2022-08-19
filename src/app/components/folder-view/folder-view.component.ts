@@ -37,6 +37,7 @@ export class FolderViewComponent implements OnInit {
   }
 
   hideDialogWindows() {
-    this.showVideoPlayer = false;
+    //this.showVideoPlayer = false;
+    this.playerService.isPlaying.next(false);
   }
 }
