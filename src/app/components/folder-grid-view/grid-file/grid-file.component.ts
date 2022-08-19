@@ -42,14 +42,6 @@ export class GridFileComponent implements OnInit {
     //$event.stopPropagation()
 
     this.downloadFile()
-    // if(this.isSingleClick){
-    //
-    //   this.isSingleClick = false;
-    // }
-    // this.isSingleClick = true;
-    // setTimeout(()=>{
-    //   this.isSingleClick = false
-    // },250)
   }
 
   thumbnailLoaded(){
@@ -71,6 +63,7 @@ export class GridFileComponent implements OnInit {
 }
 
   onClick($event: MouseEvent) {
-    this.playerService.playVideo(this.file.id)
+    if (this.file.fileType.includes("video"))
+      this.playerService.playVideo(this.file.id)
   }
 }
