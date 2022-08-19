@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { File } from 'src/app/common/file';
 import { DownloadService } from 'src/app/services/download.service';
 import {PlayerService} from "../../../services/player.service";
-import {faFolder} from "@fortawesome/free-solid-svg-icons";
+import {faFile, faFolder} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-grid-file',
@@ -33,6 +33,7 @@ export class GridFileComponent implements OnInit {
 
   isThumbnailLoaded: boolean = false;
   imageBlockDisplay: string = "none";
+  faFile = faFile;
 
   ngOnInit(): void {
   }
