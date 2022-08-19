@@ -11,6 +11,7 @@ import { BasicFolder } from 'src/app/common/basic-folder';
 import { SelectContainerComponent } from 'ngx-drag-to-select';
 import { SelectionService } from 'src/app/services/selection.service';
 import { FileService } from 'src/app/services/file.service';
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 
 interface FolderView{
@@ -46,11 +47,11 @@ export class FolderGridViewComponent implements OnInit {
 
   newFolderParent: Folder;
   renameResource: (Folder | File);
-  currentFolderTimeout: boolean = false;
 
   selected: (Folder | File)[] = [];
   allowDragSelection: boolean = true;
   allowClickSelection: boolean = true;
+  faArrowLeft = faArrowLeft;
 
   constructor(
     private folderService: FolderService,
@@ -72,16 +73,6 @@ export class FolderGridViewComponent implements OnInit {
       this.getFolderContent(folderId);
     else
       this.getMainFolderContent();
-    // this.loginService.token.subscribe(
-    //   data => {
-    //     if(data.length > 0){
-    //       this.token = data;
-    //       if(!hasFolderId)
-    //         this.getMainFolderContent(data);
-    //       else
-    //         this.getFolderContent(data, folderId);
-    //     }
-    //   })
 
       this.uploadService.onFileUpload.subscribe((file: File) => {
         if(this.currentFolder.id === file.parentFolder.id)
