@@ -1,0 +1,8 @@
+<ul [ngStyle]="{'left.px': x, 'top.px': y}">
+    <li (click)="openFolder($event)">Open</li>
+    <li (click)="downloadSelection()">Download</li>
+    <li (click)="createNewFolder($event)">Create new folder</li>
+    <li>Upload file</li>
+    <li (click)="rename($event)">Rename</li>
+    <li (click)="deleteFolder($event)">Delete</li>
+</ul>

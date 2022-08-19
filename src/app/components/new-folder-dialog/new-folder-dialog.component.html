@@ -1,0 +1,15 @@
+<div class="row dialog-window" (click)="mainClick($event)">
+    <div class="col-12">
+        Provide folder name
+        <div class="row">
+            <div class="col-9">
+
+                <input ngModel #folderName type="text" name="" id="" [(ngModel)]="newFolderName" [autofocus]>
+            </div>
+            <div class="col-3">
+
+                <button (click)="addFolder($event)">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

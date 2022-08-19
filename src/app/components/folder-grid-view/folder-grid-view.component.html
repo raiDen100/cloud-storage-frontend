@@ -1,0 +1,117 @@
+
+
+<div class="col-8 offset-2">
+    <div class="container-fluid fill-height"
+    [appDnd]="currentFolder"
+    (filesDropped)="handleFileUpload($event, currentFolder)"
+    (click)="onClick($event)"
+    (mousedown)="onClick($event)"
+    (contextmenu)="showCurrentFolderContextMenu($event)"
+    style="min-height: 100vh;">
+        <div class="row" style="border-bottom: 1px solid black; padding: 10px;">
+            <h3>
+                {{currentFolder.displayName}}
+            </h3>
+        </div>
+        <div class="row folder" (scroll)="selectContainer.update()">
+          <dts-select-container class="drag-area"
+                #selectContainer="dts-select-container"
+                [(selectedItems)]="selected"
+                [custom]="true"
+                [disableDrag]="!allowDragSelection"
+                [selectOnClick]="allowClickSelection"
+                (select)="updateSelection($event)">
+            <div class="col">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3 col-lg-2 resource" (click)="onDoubleClick()"
+                    *ngIf="currentFolder.parentFolder != null"
+                    (filesDropped)="handleFileUpload($event, currentFolder.parentFolder)"
+                    [appDnd]="currentFolder.parentFolder"
+                    (resourcesMoved)="reloadCurrentFolder()">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <i class="fa-solid fa-arrow-left fa-7x"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{currentFolder.parentFolder.displayName}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <app-grid-folder class="col-xs-12 col-md-3 col-lg-2 resource"
+                        *ngFor="let folder of currentFolder.folders"
+                        [dtsSelectItem]="folder"
+                        [folder]="folder"
+                        [appDnd]="folder"
+                        (filesDropped)="handleSubfolderFileUpload($event, folder)"
+                        (onDoubleClick)="openFolder(folder)"
+                        draggable="true"
+                        (resourcesMoved)="reloadCurrentFolder()"
+                        (mousedown)="onResourceMouseDown($event, folder)"
+                        (mouseup)="onResourceDragEnd($event)"
+                        (dragend)="onResourceDragEnd($event)"
+                        (contextMenu)="showFolderContextMenu($event)">
+                    </app-grid-folder>
+
+                </div>
+
+                <div class="row">
+                    <app-grid-file class="col-xs-12 col-md-3 col-lg-2 resource"
+                        *ngFor="let file of currentFolder.files"
+                        [dtsSelectItem]="file"
+                        [file]="file"
+                        draggable="true"
+                        (mousedown)="onResourceMouseDown($event, file)"
+                        (mouseup)="onResourceDragEnd($event)"
+                        (dragend)="onResourceDragEnd($event)"
+                        (contextMenu)="showFileContextMenu($event)"
+                        (onThumbnailLoaded)="calculateSelectionArea()">
+                    </app-grid-file>
+                </div>
+            </div>
+          </dts-select-container>
+        </div>
+    </div>
+</div>
+
+
+<app-folder-context-menu
+    *ngIf="folderContextMenu"
+    [folder]="contextFolder"
+    [x]="contextMenuPos.x"
+    [y]="contextMenuPos.y"
+    (onOpenFolder)="openFolder($event)"
+    (onChangeName)="showRenameDialog($event)"
+    (onCreateNewFolder)="createNewFolder($event)">
+</app-folder-context-menu>
+
+<app-current-folder-context-menu
+    *ngIf="currentFolderContextMenu"
+    [folder]="currentFolder"
+    [x]="contextMenuPos.x"
+    [y]="contextMenuPos.y"
+    (onCreateNewFolder)="createNewFolder($event)">
+</app-current-folder-context-menu>
+
+<app-file-context-menu
+    *ngIf="fileContextMenu"
+    [file]="contextFile"
+    [x]="contextMenuPos.x"
+    [y]="contextMenuPos.y"
+    (onChangeName)="showRenameDialog($event)"
+    (onCreateNewFolder)="createNewFolder($event)">
+</app-file-context-menu>
+
+<app-new-folder-dialog
+    *ngIf="newFolderDialog"
+    [parentFolder]="newFolderParent">
+</app-new-folder-dialog>
+
+<app-rename-dialog
+    *ngIf="renameDialog"
+    [resource]="renameResource"
+    (onNameChange)="reloadCurrentFolder()">
+</app-rename-dialog>

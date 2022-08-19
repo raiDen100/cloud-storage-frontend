@@ -1,0 +1,22 @@
+<div 
+class="file"
+(click)="onClick($event)" 
+(contextmenu)="onRightClick($event)">
+    <div class="row">
+        <div class="col-12">
+            <img 
+            *ngIf="file.fileType.includes('image')"
+            [hidden]="!isThumbnailLoaded"
+            (load)="thumbnailLoaded()" 
+            [src]="'http://192.168.1.75:8080/api/thumbnail/' + file.id" alt="">
+            
+            <i *ngIf="!isThumbnailLoaded" class="fa-solid fa-file fa-7x"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 name">
+            <span>{{file.displayName}}</span>
+            <span *ngIf="file.extension">.{{file.extension}}</span>
+        </div>
+    </div>
+</div>

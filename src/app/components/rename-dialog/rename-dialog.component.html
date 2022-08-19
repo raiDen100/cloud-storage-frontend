@@ -1,0 +1,15 @@
+<div class="row dialog-window" (click)="mainClick($event)">
+    <div class="col-12">
+        Provide new name
+        <div class="row">
+            <div class="col-9">
+
+                <input ngModel #folderName type="text" name="" id="" [(ngModel)]="newName" [autofocus]>
+            </div>
+            <div class="col-3">
+
+                <button (click)="rename($event)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="upload-status-box col-2" (click)="onClick()">
+    <ul>
+        <li *ngFor="let r of uploadFiles">
+            {{r.file.name}}
+            <br>
+            <div class="status-bar" [ngStyle]="{'width': r.percentage + '%'}">
+            </div>
+        </li>
+    </ul>
+</div>

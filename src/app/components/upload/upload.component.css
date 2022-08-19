@@ -1,0 +1,28 @@
+.upload-status-box{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis!important;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+
+}
+
+li{
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: magenta;
+}
+
+.status-bar{
+    width: 50%;
+    height: 15px;
+    background-color: lime;
+}

@@ -1,0 +1,12 @@
+.folder-name{
+    overflow: hidden;
+}
+
+.folder-view{
+    
+}
+
+.selected{
+    border-radius: 10px;
+    background-color: lightblue;
+}

@@ -1,0 +1,15 @@
+.dialog-window{
+    position: fixed;
+
+
+    height: 120px;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -100px;
+    background-color: red;
+}
+
+input{
+    width: 100%;
+}
