@@ -62,7 +62,7 @@ export class FolderGridViewComponent implements OnInit {
     private router: Router,
     private uploadService: UploadService,
     private selectionService: SelectionService,
-    private playerSecvice: PlayerService
+    private playerService: PlayerService
     ) { }
 
   ngOnInit(): void {
@@ -255,7 +255,7 @@ export class FolderGridViewComponent implements OnInit {
     this.fileContextMenu = false;
     this.newFolderDialog = false;
     this.renameDialog = false;
-    this.playerSecvice.isPlaying.next(false);
+    this.playerService.isPlaying.next(false);
   }
 
   onResourceMouseDown($event: any, resource: any){
