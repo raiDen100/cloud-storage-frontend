@@ -12,6 +12,7 @@ import { SelectContainerComponent } from 'ngx-drag-to-select';
 import { SelectionService } from 'src/app/services/selection.service';
 import { FileService } from 'src/app/services/file.service';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {PlayerService} from "../../services/player.service";
 
 
 interface FolderView{
@@ -60,7 +61,8 @@ export class FolderGridViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private uploadService: UploadService,
-    private selectionService: SelectionService
+    private selectionService: SelectionService,
+    private playerSecvice: PlayerService
     ) { }
 
   ngOnInit(): void {
@@ -253,6 +255,7 @@ export class FolderGridViewComponent implements OnInit {
     this.fileContextMenu = false;
     this.newFolderDialog = false;
     this.renameDialog = false;
+    this.playerSecvice.isPlaying.next(false);
   }
 
   onResourceMouseDown($event: any, resource: any){
