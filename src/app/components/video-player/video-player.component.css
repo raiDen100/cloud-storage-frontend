@@ -1,9 +1,17 @@
 .video-player{
   position: fixed;
-  width: 70%;
-  max-height: 50%;
-  top: 50%;
-  left: 50%;
-  margin-top: -20%; /* Negative half of height. */
-  margin-left: -35%; /* Negative half of width. */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+video{
+  max-width: 70%;
+  width: auto;
+  height:auto;
+  max-height: 70%;
+  margin: auto;
+  margin-top: 5%;
 }
