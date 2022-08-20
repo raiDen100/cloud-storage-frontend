@@ -9,6 +9,11 @@ export class PlayerService {
   onPlayVideo = new EventEmitter();
   isPlaying: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  supportedTypes = [
+    "video/quicktime",
+    "video/mp4"
+  ]
+
   constructor() { }
 
   playVideo(fileId: string){
