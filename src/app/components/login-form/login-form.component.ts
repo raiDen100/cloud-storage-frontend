@@ -15,9 +15,11 @@ export class LoginFormComponent implements OnInit {
   constructor(private loginService: LoginServiceService, private router: Router, private route: ActivatedRoute) { }
 
   submit(){
+    localStorage.removeItem("token");
     this.loginService.login(this.username, this.password)
       .subscribe({
       next: response => {
+
         localStorage.setItem("token", response.token);
         this.router.navigate(['drive'], { relativeTo: this.route})
       },
