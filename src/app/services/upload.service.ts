@@ -27,6 +27,7 @@ export class UploadService {
   upload(file:any, folder: BasicFolder){
     var formData = new FormData();
     formData.append("files", file);
+    console.log(file)
 
     return this.httpClient.post(`${this.url}/${folder.id}`, formData, { reportProgress: true, observe: 'events'})
   }
