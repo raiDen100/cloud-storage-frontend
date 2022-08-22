@@ -13,7 +13,7 @@ export class RenameDialogComponent implements OnInit {
 
   newName: string = "";
 
-  @ViewChild('folderName') input:any; 
+  @ViewChild('resourceName') input:any;
 
   @Input("resource")
   resource: any;
@@ -24,6 +24,7 @@ export class RenameDialogComponent implements OnInit {
   constructor(private fileService: FileService, private folderService: FolderService) { }
 
   ngOnInit(): void {
+    this.newName = this.resource.displayName;
   }
 
   ngAfterViewInit(){
