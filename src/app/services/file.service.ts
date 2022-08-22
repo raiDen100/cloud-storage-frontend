@@ -13,6 +13,13 @@ export class FileService {
   onFileChange = new EventEmitter();
   onFileDelete = new EventEmitter();
 
+  shouldHaveThumbnail = [
+    "image",
+    "video",
+    "x-matroska"
+  ]
+
+
   constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
 
   deleteFile(file: File){

@@ -1,22 +1,26 @@
 <div
 class="file"
 (dblclick)="onDoubleClick($event)"
-(click)="onClick($event)"
 (contextmenu)="onRightClick($event)">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 image-box">
             <img
-            *ngIf="file.fileType.includes('image')"
+            *ngIf="shouldHaveThumbnail()"
             [hidden]="!isThumbnailLoaded"
             (load)="thumbnailLoaded()"
-            [src]="'http://192.168.1.75:8080/api/thumbnail/' + file.id" alt="">
+            (error)="loadError($event)"
+            [src]="thumbnailUrl" alt="">
 
           <fa-icon *ngIf="!isThumbnailLoaded" [icon]="faFile" [size]="'7x'"></fa-icon>
+          <div class="playable-icon" *ngIf="isVideoType()">
+            <fa-icon class="circle-play-icon" (click)="onClick($event)" *ngIf="!isPlayable()" [icon]="faFilm" [size]="'5x'"></fa-icon>
+            <fa-icon class="circle-play-icon" (click)="onClick($event)" *ngIf="isPlayable()" [icon]="faPlay" [size]="'5x'"></fa-icon>
+          </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12 name">
-            <span>{{file.displayName}}</span>
+            <span [title]="file.displayName">{{file.displayName}}</span>
             <span *ngIf="file.extension">.{{file.extension}}</span>
         </div>
     </div>

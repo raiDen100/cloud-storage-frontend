@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { File } from 'src/app/common/file';
 import { DownloadService } from 'src/app/services/download.service';
 import {PlayerService} from "../../../services/player.service";
-import {faFile, faFolder} from "@fortawesome/free-solid-svg-icons";
+import {faBorderAll, faCirclePlay, faFile, faFilm, faFolder, faPlay} from "@fortawesome/free-solid-svg-icons";
+import {FileService} from "../../../services/file.service";
 
 @Component({
   selector: 'app-grid-file',
@@ -16,7 +17,8 @@ export class GridFileComponent implements OnInit {
 
   constructor(
     private downloadService: DownloadService,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private fileService: FileService
     ) { }
 
   @Input("file")
@@ -34,8 +36,18 @@ export class GridFileComponent implements OnInit {
   isThumbnailLoaded: boolean = false;
   imageBlockDisplay: string = "none";
   faFile = faFile;
+  faPlay = faCirclePlay
+  faFilm = faFilm
+
+
+  thumbnailUrl: string;
+
+  loadedAt: number;
 
   ngOnInit(): void {
+    console.log(this.file);
+    this.thumbnailUrl = 'http://192.168.1.75:8080/api/thumbnail/' + this.file.id;
+    this.loadedAt = new Date().getTime();
   }
 
   onDoubleClick($event: MouseEvent){
@@ -64,7 +76,34 @@ export class GridFileComponent implements OnInit {
 
   onClick($event: MouseEvent) {
     $event.stopPropagation();
-    if (this.playerService.supportedTypes.includes(this.file.fileType))
+    if (this.isPlayable())
       this.playerService.playVideo(this.file.id)
+  }
+
+  loadError($event: ErrorEvent) {
+
+    const currentTime = new Date().getTime();
+    if (currentTime - this.loadedAt > 15000)
+      return;
+
+    setTimeout(() => {
+      this.thumbnailUrl += "?1";
+    }, 1500);
+  }
+
+  isPlayable(){
+    return this.playerService.supportedTypes.includes(this.file.fileType);
+  }
+
+  shouldHaveThumbnail(){
+    for(let type of this.fileService.shouldHaveThumbnail){
+      if (this.file.fileType.includes(type))
+        return true
+    }
+    return false;
+  }
+
+  isVideoType() {
+    return this.file.fileType.includes("video") || this.file.fileType.includes("x-matroska")
   }
 }

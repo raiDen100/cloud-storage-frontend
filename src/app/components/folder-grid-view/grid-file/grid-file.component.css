@@ -3,15 +3,43 @@ div{
 img{
     max-width: 100%;
     max-height: 120px;
+  min-height: 120px;
 }
 
 .file{
     padding: 5px;
-    
+
 }
 
 .name{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis!important;
+}
+
+.playable-icon{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 17%;
+  text-align: center;
+}
+
+.image-box{
+  position: relative;
+}
+
+
+.circle-play-icon{
+  stroke: #ddd;
+  stroke-width: 10px;
+  transition: transform .2s;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.circle-play-icon:hover{
+  transform: scale(1.1);
 }

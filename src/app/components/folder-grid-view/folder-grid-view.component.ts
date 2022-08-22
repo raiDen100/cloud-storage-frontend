@@ -14,13 +14,6 @@ import { FileService } from 'src/app/services/file.service';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {PlayerService} from "../../services/player.service";
 
-
-interface FolderView{
-  name: string;
-  children: Folder[]
-}
-
-
 @Component({
   selector: 'app-folder-grid-view',
   templateUrl: './folder-grid-view.component.html',
@@ -61,8 +54,7 @@ export class FolderGridViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private uploadService: UploadService,
-    private selectionService: SelectionService,
-    private playerService: PlayerService
+    private selectionService: SelectionService
     ) { }
 
   ngOnInit(): void {
@@ -255,7 +247,6 @@ export class FolderGridViewComponent implements OnInit {
     this.fileContextMenu = false;
     this.newFolderDialog = false;
     this.renameDialog = false;
-    this.playerService.isPlaying.next(false);
   }
 
   onResourceMouseDown($event: any, resource: any){
