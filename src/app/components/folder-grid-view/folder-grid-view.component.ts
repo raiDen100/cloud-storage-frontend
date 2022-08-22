@@ -150,7 +150,18 @@ export class FolderGridViewComponent implements OnInit {
     this.folderService.getFolderContent(folderId).subscribe((response: CurrentFolder) => {
 
       this.currentFolder = response;
+      this.sortResources();
     });
+  }
+
+  private sortResources() {
+    this.currentFolder.folders.sort((a, b) => {
+      return a.displayName.localeCompare(b.displayName);
+    })
+
+    this.currentFolder.files.sort((a, b) => {
+      return a.displayName.localeCompare(b.displayName);
+    })
   }
 
   handleFileUpload($event: any, folder: BasicFolder){
@@ -274,5 +285,4 @@ export class FolderGridViewComponent implements OnInit {
   calculateSelectionArea(){
     this.selectContainer.update();
   }
-
 }
