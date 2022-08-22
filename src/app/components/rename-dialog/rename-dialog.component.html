@@ -3,11 +3,9 @@
         Provide new name
         <div class="row">
             <div class="col-9">
-
-                <input ngModel #resourceName [selectionStart]="0" [selectionEnd]="newName.length-1" type="text" name="" id="" [(ngModel)]="newName" [autofocus]>
+                <input ngModel #resourceName type="text" name="" id="" [(ngModel)]="newName" [autofocus]>
             </div>
             <div class="col-3">
-
                 <button (click)="rename($event)">Save</button>
             </div>
         </div>
