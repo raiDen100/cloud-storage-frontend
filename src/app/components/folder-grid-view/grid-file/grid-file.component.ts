@@ -47,7 +47,6 @@ export class GridFileComponent implements OnInit {
   loadedAt: number;
 
   ngOnInit(): void {
-    console.log(this.file);
     this.thumbnailUrl = this.baseUrl + '/thumbnail/' + this.file.id;
     this.loadedAt = new Date().getTime();
   }

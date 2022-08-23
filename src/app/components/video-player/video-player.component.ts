@@ -29,7 +29,6 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   playerError($event: ErrorEvent) {
-    console.log($event)
     this.playerService.isPlaying.next(false);
     if (this.videoUrl != "" && this.videoUrl !== undefined)
     this.playerService.playerError.next(true);
@@ -41,11 +40,10 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   onLoad($event: any){
-    console.log($event)
+
   }
 
   private managePlayer(isPlaying: boolean) {
-    console.log(isPlaying)
     if(isPlaying)
       this.videoPlayer.nativeElement.play();
     else

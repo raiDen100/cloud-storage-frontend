@@ -32,7 +32,6 @@ export class FolderViewComponent implements OnInit {
     })
 
     this.playerService.playerError.subscribe(error => {
-      console.log(error)
       this.showVideoInfo = error;
     })
   }

@@ -32,10 +32,8 @@ export class DownloadService {
   }
 
   downloadResources(resources: (Folder | File)[]){
-    console.log(resources);
 
       this.resourceService.zipResources(resources).subscribe((data: any) => {
-        console.log(data);
 
         this.downloadZipFile(data.id);
       })
