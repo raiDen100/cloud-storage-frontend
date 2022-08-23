@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-10">
-          <input class="url-input form-control" #resourceUrl type="text"  [(ngModel)]="url">
+          <input class="url-input form-control" #resourceUrl type="text"  [(ngModel)]="url" readonly>
         </div>
         <div class="col-2">
           <button class="btn btn-primary" [cdkCopyToClipboard]="url" (click)="onButtonClick($event)">Copy</button>
