@@ -3,6 +3,7 @@
   <app-folder-grid-view></app-folder-grid-view>
   <app-video-player [hidden]="!showVideoPlayer"></app-video-player>
   <app-video-info *ngIf="showVideoInfo"></app-video-info>
+  <input type="file" #fileinput (change)="onFileInputChange($event)" [hidden]="true" multiple/>
   <div class="col-2">
     <div class="row">
       <app-upload></app-upload>

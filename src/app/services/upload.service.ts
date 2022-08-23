@@ -15,13 +15,19 @@ export class UploadService {
 
   filesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   onFileUpload = new EventEmitter();
+  onOpenFilePicker = new EventEmitter();
 
   url: string = environment.baseUrl + "/file/upload";
 
   addFilesToUpload(files: any[], folder: BasicFolder){
+    console.log(files)
+    if (files instanceof FileList)
+      for(const item of files)
+        this.filesSubject.next({file: item, folder: folder});
+    else if (files instanceof DataTransferItemList)
+      for(const item of files)
+        this.filesSubject.next({file: item.webkitGetAsEntry(), folder: folder});
 
-    for(const item of files)
-      this.filesSubject.next({file: item.webkitGetAsEntry(), folder: folder});
 
   }
 

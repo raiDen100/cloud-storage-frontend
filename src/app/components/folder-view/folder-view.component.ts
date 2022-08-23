@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginServiceService} from "../../services/login-service.service";
 import {Router} from "@angular/router";
 import {JWTTokenService} from "../../services/jwttoken.service";
 import {PlayerService} from "../../services/player.service";
+import {UploadService} from "../../services/upload.service";
+import {Folder} from "../../common/folder";
 
 
 @Component({
@@ -16,11 +18,17 @@ export class FolderViewComponent implements OnInit {
     private loginService: LoginServiceService,
     private router: Router,
     private jwtTokenService: JWTTokenService,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private uploadService: UploadService
   ) { }
 
   showVideoPlayer: boolean = false;
   showVideoInfo: boolean = false;
+
+  uploadFolder: Folder;
+
+  @ViewChild("fileinput")
+  fileinput: ElementRef;
 
   ngOnInit(): void {
 
@@ -34,6 +42,11 @@ export class FolderViewComponent implements OnInit {
     this.playerService.playerError.subscribe(error => {
       this.showVideoInfo = error;
     })
+
+    this.uploadService.onOpenFilePicker.subscribe(event => {
+      this.uploadFolder = event
+      this.fileinput.nativeElement.click();
+    })
   }
 
 
@@ -44,5 +57,19 @@ export class FolderViewComponent implements OnInit {
   hideDialogWindows() {
     //this.showVideoPlayer = false;
     this.playerService.isPlaying.next(false);
+  }
+
+  onFileInputChange($event: any) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    console.log($event)
+
+    const files = $event.target.files;
+
+    if(files.length > 0){
+
+      this.uploadService.addFilesToUpload(files, this.uploadFolder);
+      $event.target.value = "";
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Folder } from 'src/app/common/folder';
 import { DownloadService } from 'src/app/services/download.service';
+import {UploadService} from "../../../services/upload.service";
 
 @Component({
   selector: 'app-current-folder-context-menu',
@@ -16,7 +17,7 @@ export class CurrentFolderContextMenuComponent implements OnInit {
   @Output("onCreateNewFolder")
   onCreateNewFolder = new EventEmitter();
 
-  constructor(private downloadService: DownloadService) { }
+  constructor(private downloadService: DownloadService, private uploadService: UploadService) { }
 
   ngOnInit(): void {
   }
@@ -31,4 +32,7 @@ export class CurrentFolderContextMenuComponent implements OnInit {
     this.downloadService.downloadResources([this.folder]);
   }
 
+  openFilePicker($event: MouseEvent) {
+    this.uploadService.onOpenFilePicker.next(this.folder);
+  }
 }

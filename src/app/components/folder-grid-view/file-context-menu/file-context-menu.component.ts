@@ -6,6 +6,7 @@ import { FileService } from 'src/app/services/file.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { ResourceService } from 'src/app/services/resource.service';
 import { SelectionService } from 'src/app/services/selection.service';
+import {UploadService} from "../../../services/upload.service";
 
 @Component({
   selector: 'app-file-context-menu',
@@ -36,7 +37,8 @@ export class FileContextMenuComponent implements OnInit {
     private fileService: FileService,
     private selectionService: SelectionService,
     private resourceService: ResourceService,
-    private folderService: FolderService) { }
+    private folderService: FolderService,
+    private uploadService: UploadService) { }
 
   ngOnInit(): void {
   }
@@ -47,13 +49,6 @@ export class FileContextMenuComponent implements OnInit {
       this.downloadService.downloadResources(this.selectionService.selectedResources)
     else
       this.downloadService.downloadFile(this.file);
-    //this.downloadService.downloadFile(this.file).subscribe(response => {
-      // let blob: Blob = response.body as Blob;
-      // let a = document.createElement('a');
-      // a.download = this.file.displayName;
-      // a.href = window.URL.createObjectURL(blob);
-      // a.click();
-   // })
   }
 
   downloadFile($event: MouseEvent){
@@ -61,6 +56,10 @@ export class FileContextMenuComponent implements OnInit {
     this.download()
     this.onFileDownload.emit(this.file);
 
+  }
+
+  openFilePicker($event: MouseEvent) {
+    this.uploadService.onOpenFilePicker.next(this.file.parentFolder);
   }
 
   createNewFolder($event: MouseEvent){

@@ -48,7 +48,12 @@ export class UploadComponent implements OnInit {
   }
 
   addFile(r: any){
-    if (r.file.isDirectory){
+    console.log(r.file)
+    if (r.file.isDirectory === undefined){
+      this.onPromise.next({f: r.file, r: r});
+      return;
+    }
+    else if (r.file.isDirectory){
       const entry = r.file
       const reader = entry.createReader();
 
