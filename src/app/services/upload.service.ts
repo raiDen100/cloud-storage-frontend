@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BasicFolder } from '../common/basic-folder';
 import { Folder } from '../common/folder';
 import { LoginServiceService } from './login-service.service';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UploadService {
   filesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   onFileUpload = new EventEmitter();
 
-  url: string = "http://192.168.1.75:8080/api/file/upload";
+  url: string = environment.baseUrl + "/file/upload";
 
   addFilesToUpload(files: any[], folder: BasicFolder){
 

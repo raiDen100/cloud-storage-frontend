@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { File } from '../common/file';
 import { LoginServiceService } from './login-service.service';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
 
-  private baseUrl: string = "http://192.168.1.75:8080/api/file";
+  private baseUrl: string = environment.baseUrl + "/file";
 
   onFileChange = new EventEmitter();
   onFileDelete = new EventEmitter();

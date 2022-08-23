@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { LoginRequest } from '../common/login-request';
 import { Token } from '../common/token';
 import {JWTTokenService} from "./jwttoken.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LoginServiceService {
     private httpClient: HttpClient
   ) { }
 
-  private authUrl = "http://192.168.1.75:8080/api/authenticate";
+  private authUrl = environment.baseUrl + "/authenticate";
 
   login(username: string, password: string){
     const payload = new LoginRequest(username, password);

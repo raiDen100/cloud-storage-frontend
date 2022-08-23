@@ -4,6 +4,7 @@ import { DownloadService } from 'src/app/services/download.service';
 import {PlayerService} from "../../../services/player.service";
 import {faBorderAll, faCirclePlay, faFile, faFilm, faFolder, faPlay} from "@fortawesome/free-solid-svg-icons";
 import {FileService} from "../../../services/file.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-grid-file',
@@ -41,12 +42,13 @@ export class GridFileComponent implements OnInit {
 
 
   thumbnailUrl: string;
+  baseUrl: string = environment.baseUrl;
 
   loadedAt: number;
 
   ngOnInit(): void {
     console.log(this.file);
-    this.thumbnailUrl = 'http://192.168.1.75:8080/api/thumbnail/' + this.file.id;
+    this.thumbnailUrl = this.baseUrl + '/thumbnail/' + this.file.id;
     this.loadedAt = new Date().getTime();
   }
 

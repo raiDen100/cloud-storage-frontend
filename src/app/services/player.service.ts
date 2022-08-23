@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class PlayerService {
 
   videoId: string = ""
 
+  baseUrl: string = environment.baseUrl;
+
   supportedTypes = [
     "video/quicktime",
     "video/mp4"
@@ -21,10 +24,10 @@ export class PlayerService {
 
   playVideo(fileId: string){
     this.isPlaying.next(true);
-    this.onPlayVideo.emit(`http://192.168.1.75:8080/api/download/${fileId}`);
+    this.onPlayVideo.emit(`${this.baseUrl}/download/${fileId}`);
   }
 
   getVideoUrl(){
-    return `http://192.168.1.75:8080/api/download/${this.videoId}`
+    return `${this.baseUrl}/download/${this.videoId}`
   }
 }

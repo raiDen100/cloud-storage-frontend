@@ -6,6 +6,7 @@ import { CurrentFolder } from '../common/current-folder';
 import { File } from '../common/file';
 import { Folder } from '../common/folder';
 import { LoginServiceService } from './login-service.service';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class FolderService {
   constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
 
 
-  private baseUrl: string = "http://192.168.1.75:8080/api/folder";
+  private baseUrl: string = environment.baseUrl + "/folder";
 
   onFolderChange = new EventEmitter();
   onFolderDelete = new EventEmitter();

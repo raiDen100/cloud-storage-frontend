@@ -21,16 +21,6 @@ export class JWTTokenService {
     return jwtDecode(this.loginService.getToken());
   }
 
-  // getUser() {
-  //   this.decodeToken();
-  //   return this.decodedToken ? this.decodedToken.displayname : null;
-  // }
-  //
-  // getEmailId() {
-  //   this.decodeToken();
-  //   return this.decodedToken ? this.decodedToken.email : null;
-  // }
-  //
   getExpiryTime() {
     this.decodeToken();
     return this.decodedToken ? this.decodedToken.exp : null;

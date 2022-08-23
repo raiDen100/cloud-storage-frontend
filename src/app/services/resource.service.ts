@@ -4,13 +4,14 @@ import { BasicFolder } from '../common/basic-folder';
 import { File } from '../common/file';
 import { Folder } from '../common/folder';
 import { LoginServiceService } from './login-service.service';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
 
-  private baseUrl: string = "http://192.168.1.75:8080/api/resources";
+  private baseUrl: string = environment.baseUrl + "/resources";
 
   constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
 
