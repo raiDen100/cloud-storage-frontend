@@ -21,7 +21,7 @@ export class UploadService {
   addFilesToUpload(files: any[], folder: BasicFolder){
 
     for(const item of files)
-      this.filesSubject.next({file: item, folder: folder});
+      this.filesSubject.next({file: item.webkitGetAsEntry(), folder: folder});
 
   }
 

@@ -3,7 +3,7 @@
         <li *ngFor="let r of uploadFiles">
             {{r.file.name}}
             <br>
-            <div class="status-bar" [ngStyle]="{'width': r.percentage + '%'}">
+            <div class="status-bar" [style.width.%]="r.percentage">
             </div>
         </li>
     </ul>
