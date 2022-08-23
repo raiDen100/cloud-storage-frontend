@@ -21,6 +21,9 @@ export class FolderService {
   onFolderChange = new EventEmitter();
   onFolderDelete = new EventEmitter();
 
+  isNewFolderDialogOpen = new EventEmitter();
+  isRenameDialogOpen = new EventEmitter();
+
   getFolderContent(folderId: string) {
     const url = this.baseUrl + `/${folderId}`;
 

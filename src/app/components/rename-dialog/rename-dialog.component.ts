@@ -51,4 +51,9 @@ export class RenameDialogComponent implements OnInit {
     }
   }
 
+  closeCard($event: MouseEvent) {
+    $event.stopPropagation();
+
+    this.folderService.isRenameDialogOpen.emit(false);
+  }
 }

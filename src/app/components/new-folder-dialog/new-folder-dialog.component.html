@@ -1,15 +1,24 @@
-<div class="row dialog-window" (click)="mainClick($event)">
-    <div class="col-12">
-        Provide folder name
-        <div class="row">
-            <div class="col-9">
+<div class="col-8 new-folder-dialog" (click)="closeCard($event);">
+  <div class="row">
+    <div class="offset-md-4 col-md-4 card" (click)="mainClick($event)">
+      <div class="row">
+        <h4>
+          Create new folder
+        </h4>
+      </div>
+      <div class="row">
+        <p>
 
-                <input ngModel #folderName type="text" name="" id="" [(ngModel)]="newFolderName" [autofocus]>
-            </div>
-            <div class="col-3">
-
-                <button (click)="addFolder($event)">Add</button>
-            </div>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <input class="url-input form-control" #folderName type="text" name="" id="" [(ngModel)]="newFolderName" [autofocus]>
         </div>
+        <div class="col-2">
+          <button class="btn btn-primary" (click)="addFolder($event)">Create</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

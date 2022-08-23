@@ -17,14 +17,14 @@ export class NewFolderDialogComponent implements OnInit {
   @Input("parentFolder")
   parentFolder: Folder;
 
-  @ViewChild('folderName') input:any; 
+  @ViewChild('folderName') input:any;
 
   constructor(private folderService: FolderService) { }
 
   ngOnInit(): void {
-    
+
   }
-  
+
   ngAfterViewInit(){
     this.input.nativeElement.focus();
   }
@@ -43,4 +43,9 @@ export class NewFolderDialogComponent implements OnInit {
     });
   }
 
+  closeCard($event: MouseEvent) {
+    $event.stopPropagation();
+    console.log(false)
+    this.folderService.isNewFolderDialogOpen.emit(false);
+  }
 }

@@ -13,6 +13,7 @@ import { SelectionService } from 'src/app/services/selection.service';
 import { FileService } from 'src/app/services/file.service';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {PlayerService} from "../../services/player.service";
+import {isPackageNameSafeForAnalytics} from "@angular/cli/src/analytics/analytics";
 
 @Component({
   selector: 'app-folder-grid-view',
@@ -84,6 +85,14 @@ export class FolderGridViewComponent implements OnInit {
       this.fileService.onFileDelete.subscribe((file: File) => {
         this.deleteFile(file);
       });
+
+      this.folderService.isNewFolderDialogOpen.subscribe(isOpen => {
+        this.newFolderDialog = isOpen;
+      })
+
+    this.folderService.isRenameDialogOpen.subscribe(isOpen => {
+      this.renameDialog = isOpen;
+    })
   }
 
   addFileToCurrentFolder(file: File) {
