@@ -1,10 +1,14 @@
 <div class="upload-status-box col-2" (click)="onClick()">
-    <ul>
-        <li *ngFor="let r of uploadFiles">
-            {{r.file.name}}
-            <br>
-            <div class="status-bar" [style.width.%]="r.percentage">
-            </div>
-        </li>
+    <ul class="list-group">
+      <li *ngFor="let r of uploadFiles" class="list-group-item list-group-item-action" role="tablist">
+        {{r.file.name}}
+        <br>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" [style.width.%]="r.percentage"></div>
+          <div *ngIf="r.status !== 'uploading'" class="cancel" (click)="removeFromUpload(r)">
+            Cancel
+          </div>
+        </div>
+      </li>
     </ul>
 </div>

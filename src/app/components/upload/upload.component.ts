@@ -1,5 +1,5 @@
 import { HttpEvent, HttpProgressEvent, HttpResponse } from '@angular/common/http';
-import {Component, EventEmitter, NgZone, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, NgZone, OnInit, Output} from '@angular/core';
 import { BasicFolder } from 'src/app/common/basic-folder';
 import { File } from 'src/app/common/file';
 import { Folder } from 'src/app/common/folder';
@@ -82,6 +82,7 @@ export class UploadComponent implements OnInit {
     }
     const r = this.uploadFiles[0];
 
+    r.status = "uploading"
     this.uploadService.upload(r.file, r.folder).subscribe(event =>{
       this.reportStatus(r.file, event)
       if(event.type === 4 && event.status === 200){
@@ -91,8 +92,6 @@ export class UploadComponent implements OnInit {
         this.upload();
       }
     });
-
-
   }
 
   reportStatus(file: any, event: HttpEvent<Object>){
@@ -105,7 +104,19 @@ export class UploadComponent implements OnInit {
     }
   }
 
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    let result = confirm("File upload progesss will be lost");
+
+    if (this.uploadFiles.length > 0)
+      event.returnValue = false;
+  }
+
   onClick(){
 
+  }
+
+  removeFromUpload(r: any) {
+    const index = this.uploadFiles.findIndex((rr) => r === rr);
+    this.uploadFiles.splice(index, 1);
   }
 }

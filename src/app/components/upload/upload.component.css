@@ -1,28 +1,74 @@
 .upload-status-box{
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 10px;
     max-height: 450px;
     overflow-y: auto;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis!important;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 ul{
-    list-style-type: none;
-    padding: 0;
+    /*list-style-type: none;*/
+    /*padding: 0;*/
 
 }
 
 li{
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     padding: 5px;
-    background-color: magenta;
+    /*background-color: magenta;*/
 }
 
 .status-bar{
     width: 50%;
     height: 15px;
+    position: relative;
     background-color: lime;
+}
+.progress{
+  text-align: center;
+}
+.progress:hover{
+  background-color: #ddd;
+  cursor: pointer;
+
+}
+
+.cancel{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
