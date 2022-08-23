@@ -65,7 +65,7 @@ export class FileContextMenuComponent implements OnInit {
 
   createNewFolder($event: MouseEvent){
     $event.stopPropagation();
-    this.onCreateNewFolder.emit(true);
+    this.onCreateNewFolder.emit(this.file.parentFolder);
   }
 
   deleteFile($event: MouseEvent){
