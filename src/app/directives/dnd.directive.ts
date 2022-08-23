@@ -41,7 +41,7 @@ export class DndDirective {
     evt.stopPropagation();
 
     this.highlight('');
-    const files = evt.dataTransfer.files;
+    const files = evt.dataTransfer.items;
 
     if(files.length > 0)
       this.filesDropped.emit(files);

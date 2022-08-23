@@ -101,6 +101,8 @@ export class FolderGridViewComponent implements OnInit {
 
   updateFolder(folder: Folder){
     const index = this.currentFolder.folders.findIndex(f => f.id === folder.id)
+    if (folder.parentFolder.id !== this.currentFolder.id)
+      return
     if(index != -1){
       this.currentFolder.folders[index] = folder;
     }
