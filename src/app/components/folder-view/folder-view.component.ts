@@ -20,6 +20,7 @@ export class FolderViewComponent implements OnInit {
   ) { }
 
   showVideoPlayer: boolean = false;
+  showVideoInfo: boolean = false;
 
   ngOnInit(): void {
 
@@ -28,6 +29,11 @@ export class FolderViewComponent implements OnInit {
 
     this.playerService.isPlaying.subscribe(playing => {
       this.showVideoPlayer = playing;
+    })
+
+    this.playerService.playerError.subscribe(error => {
+      console.log(error)
+      this.showVideoInfo = error;
     })
   }
 

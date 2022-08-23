@@ -23,6 +23,8 @@ import { RenameDialogComponent } from './components/rename-dialog/rename-dialog.
 import {TokenInterceptor} from "./services/token.interceptor";
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VideoInfoComponent } from './components/video-info/video-info.component';
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 
 const routes: Routes = [
@@ -54,17 +56,19 @@ const routes: Routes = [
     UploadComponent,
     FolderViewComponent,
     RenameDialogComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    VideoInfoComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
-    DragToSelectModule.forRoot(),
-    FontAwesomeModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(routes),
+        BrowserAnimationsModule,
+        DragToSelectModule.forRoot(),
+        FontAwesomeModule,
+        ClipboardModule
+    ],
   exports: [
     RouterModule
   ],

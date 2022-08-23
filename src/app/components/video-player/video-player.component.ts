@@ -8,7 +8,7 @@ import {PlayerService} from "../../services/player.service";
 })
 export class VideoPlayerComponent implements OnInit {
 
-  videoUrl: string = "";
+  videoUrl: string;
 
   @ViewChild('player')
   videoPlayer: ElementRef;
@@ -23,12 +23,16 @@ export class VideoPlayerComponent implements OnInit {
     });
 
     this.playerService.isPlaying.subscribe(isPlaying => {
-      this.managePlayer(isPlaying)
+      if (this.videoPlayer !== undefined)
+        this.managePlayer(isPlaying)
     })
   }
 
   playerError($event: ErrorEvent) {
-    console.log($event);
+    console.log($event)
+    this.playerService.isPlaying.next(false);
+    if (this.videoUrl != "" && this.videoUrl !== undefined)
+    this.playerService.playerError.next(true);
   }
 
   onClick($event: MouseEvent) {
@@ -50,5 +54,30 @@ export class VideoPlayerComponent implements OnInit {
 
   onPlayerClick($event: MouseEvent) {
     $event.stopPropagation();
+  }
+
+  onKeyDown($event: KeyboardEvent) {
+
+
+    if ($event.code === "ArrowRight") {
+      const seconds = this.videoPlayer.nativeElement.currentTime;
+      this.videoPlayer.nativeElement.currentTime = seconds + 10;
+      $event.preventDefault();
+    }
+    else if ($event.code === "ArrowLeft"){
+      const seconds = this.videoPlayer.nativeElement.currentTime;
+      this.videoPlayer.nativeElement.currentTime = seconds - 10;
+      $event.preventDefault();
+    }
+    else if($event.code === "ArrowUp"){
+      const volume = this.videoPlayer.nativeElement.volume;
+      this.videoPlayer.nativeElement.volume = volume + 0.1 > 1 ? 1 : volume + 0.1;
+      $event.preventDefault();
+    }
+    else if($event.code === "ArrowDown"){
+      const volume = this.videoPlayer.nativeElement.volume;
+      this.videoPlayer.nativeElement.volume = volume - 0.1 < 0 ? 0 : volume - 0.1;
+      $event.preventDefault();
+    }
   }
 }

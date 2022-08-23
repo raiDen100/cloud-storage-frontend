@@ -78,6 +78,10 @@ export class GridFileComponent implements OnInit {
     $event.stopPropagation();
     if (this.isPlayable())
       this.playerService.playVideo(this.file.id)
+    else{
+      this.playerService.videoId = this.file.id
+      this.playerService.playerError.next(true);
+    }
   }
 
   loadError($event: ErrorEvent) {

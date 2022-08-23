@@ -20,7 +20,7 @@ class="file"
     </div>
     <div class="row">
         <div class="col-12 name">
-            <span [title]="file.displayName">{{file.displayName}}</span>
+            <span [title]="file.extension? file.displayName + '.' + file.extension : file.displayName">{{file.displayName}}</span>
             <span *ngIf="file.extension">.{{file.extension}}</span>
         </div>
     </div>
