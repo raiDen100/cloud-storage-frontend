@@ -46,6 +46,7 @@ export class RenameDialogComponent implements OnInit {
     else{
       this.fileService.renameFile(this.resource, this.newName).subscribe(data =>{
         this.onNameChange.emit(true);
+        this.folderService.isRenameDialogOpen.emit(false);
       });
 
     }

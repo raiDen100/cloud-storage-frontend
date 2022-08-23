@@ -40,6 +40,7 @@ export class NewFolderDialogComponent implements OnInit {
     .subscribe((data) => {
       this.folderService.onFolderChange.emit(data);
       this.onFolderAdded.emit(this.newFolderName);
+      this.folderService.isNewFolderDialogOpen.emit(false);
     });
   }
 
