@@ -6,6 +6,7 @@ import { Folder } from 'src/app/common/folder';
 import { SelectionService } from 'src/app/services/selection.service';
 import { UploadService } from 'src/app/services/upload.service';
 import {FolderService} from "../../services/folder.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-upload',
@@ -21,6 +22,9 @@ export class UploadComponent implements OnInit {
   onFileUploaded = new EventEmitter()
   onPromise = new EventEmitter()
 
+  promiseSubscription: Subscription;
+  fileSubscription: Subscription;
+
 
   constructor(
     private selectionService: SelectionService,
@@ -29,26 +33,28 @@ export class UploadComponent implements OnInit {
     private zone: NgZone) { }
 
   ngOnInit(): void {
-    this.uploadService.filesSubject.subscribe(f => {
-      if(f !== undefined){
+    this.fileSubscription = this.uploadService.filesSubject.subscribe(f => {
+      if(f !== undefined && f.file !== null){
         this.addFile(f);
-
       }
 
     })
 
-    this.onPromise.subscribe(x => {
+    this.promiseSubscription = this.onPromise.subscribe(x => {
       this.uploadFiles.push({file: x.f, percentage: 0, folder: x.r.folder, status: "pending"});
       if(!this.shouldDownload){
-
         this.upload();
       }
       this.shouldDownload = true
     })
   }
 
+  ngOnDestroy(){
+    this.fileSubscription.unsubscribe();
+    this.promiseSubscription.unsubscribe();
+  }
+
   addFile(r: any){
-    console.log(r.file)
     if (r.file.isDirectory === undefined){
       this.onPromise.next({f: r.file, r: r});
       return;
