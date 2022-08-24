@@ -13,7 +13,9 @@ export class UploadService {
 
   constructor(private loginService:LoginServiceService, private httpClient: HttpClient) { }
 
-  filesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  //filesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+
+  filesSubject = new EventEmitter();
   onFileUpload = new EventEmitter();
   onOpenFilePicker = new EventEmitter();
 
@@ -27,7 +29,6 @@ export class UploadService {
     else if (files instanceof DataTransferItemList)
       for(const item of files)
         this.filesSubject.next({file: item.webkitGetAsEntry(), folder: folder});
-
 
   }
 

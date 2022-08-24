@@ -14,6 +14,7 @@ import { FileService } from 'src/app/services/file.service';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {PlayerService} from "../../services/player.service";
 import {isPackageNameSafeForAnalytics} from "@angular/cli/src/analytics/analytics";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-folder-grid-view',
@@ -48,6 +49,8 @@ export class FolderGridViewComponent implements OnInit {
   allowClickSelection: boolean = true;
   faArrowLeft = faArrowLeft;
 
+  subscriptions: Subscription[] = []
+
   constructor(
     private folderService: FolderService,
     private fileService: FileService,
@@ -69,30 +72,41 @@ export class FolderGridViewComponent implements OnInit {
     else
       this.getMainFolderContent();
 
-      this.uploadService.onFileUpload.subscribe((file: File) => {
+      this.subscriptions.push(this.uploadService.onFileUpload.subscribe((file: File) => {
         if(this.currentFolder.id === file.parentFolder.id)
           this.addFileToCurrentFolder(file);
-      })
+        })
+      );
 
-      this.folderService.onFolderChange.subscribe((folder: Folder) => {
+      this.subscriptions.push(this.folderService.onFolderChange.subscribe((folder: Folder) => {
         this.updateFolder(folder);
-      });
+        })
+      )
 
-      this.folderService.onFolderDelete.subscribe((folder: Folder) => {
+      this.subscriptions.push(this.folderService.onFolderDelete.subscribe((folder: Folder) => {
         this.deleteFolder(folder);
-      });
+        })
+      )
 
-      this.fileService.onFileDelete.subscribe((file: File) => {
+      this.subscriptions.push(this.fileService.onFileDelete.subscribe((file: File) => {
         this.deleteFile(file);
-      });
+      })
+    )
 
-      this.folderService.isNewFolderDialogOpen.subscribe(isOpen => {
+    this.subscriptions.push(this.folderService.isNewFolderDialogOpen.subscribe(isOpen => {
         this.newFolderDialog = isOpen;
       })
+    )
 
-    this.folderService.isRenameDialogOpen.subscribe(isOpen => {
+    this.subscriptions.push(this.folderService.isRenameDialogOpen.subscribe(isOpen => {
       this.renameDialog = isOpen;
-    })
+      })
+    )
+  }
+
+  ngOnDestroy(){
+    for (let sub of this.subscriptions)
+      sub.unsubscribe();
   }
 
   addFileToCurrentFolder(file: File) {

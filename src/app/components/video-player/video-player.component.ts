@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PlayerService} from "../../services/player.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-video-player',
@@ -15,17 +16,25 @@ export class VideoPlayerComponent implements OnInit {
 
   shouldPlay = false;
 
+  onPlayVideoSubscription: Subscription;
+  isPlayingSubscription: Subscription;
+
   constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
-    this.playerService.onPlayVideo.subscribe((url: string) =>{
+    this.onPlayVideoSubscription = this.playerService.onPlayVideo.subscribe((url: string) =>{
       this.videoUrl = url;
     });
 
-    this.playerService.isPlaying.subscribe(isPlaying => {
+    this.isPlayingSubscription = this.playerService.isPlaying.subscribe(isPlaying => {
       if (this.videoPlayer !== undefined)
         this.managePlayer(isPlaying)
     })
+  }
+
+  ngOnDestroy(){
+    this.onPlayVideoSubscription.unsubscribe();
+    this.isPlayingSubscription.unsubscribe();
   }
 
   playerError($event: ErrorEvent) {

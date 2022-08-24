@@ -5,6 +5,7 @@ class="file"
     <div class="row">
         <div class="col-12 image-box">
             <img
+              draggable="false"
             *ngIf="shouldHaveThumbnail()"
             [hidden]="!isThumbnailLoaded"
             (load)="thumbnailLoaded()"

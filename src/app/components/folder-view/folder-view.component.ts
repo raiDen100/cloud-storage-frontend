@@ -5,6 +5,7 @@ import {JWTTokenService} from "../../services/jwttoken.service";
 import {PlayerService} from "../../services/player.service";
 import {UploadService} from "../../services/upload.service";
 import {Folder} from "../../common/folder";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -30,23 +31,33 @@ export class FolderViewComponent implements OnInit {
   @ViewChild("fileinput")
   fileinput: ElementRef;
 
+  filePickerSubscription: Subscription;
+  isPlayingSubscription: Subscription;
+  playerErrorSubscription: Subscription;
+
   ngOnInit(): void {
 
     if (this.loginService.getToken() === "" || this.jwtTokenService.isTokenExpired())
       this.router.navigate(["/"])
 
-    this.playerService.isPlaying.subscribe(playing => {
+    this.isPlayingSubscription = this.playerService.isPlaying.subscribe(playing => {
       this.showVideoPlayer = playing;
     })
 
-    this.playerService.playerError.subscribe(error => {
+    this.playerErrorSubscription = this.playerService.playerError.subscribe(error => {
       this.showVideoInfo = error;
     })
 
-    this.uploadService.onOpenFilePicker.subscribe(event => {
+    this.filePickerSubscription = this.uploadService.onOpenFilePicker.subscribe(event => {
       this.uploadFolder = event
       this.fileinput.nativeElement.click();
     })
+  }
+
+  ngOnDestroy(){
+    this.filePickerSubscription.unsubscribe();
+    this.isPlayingSubscription.unsubscribe();
+    this.playerErrorSubscription.unsubscribe();
   }
 
 
