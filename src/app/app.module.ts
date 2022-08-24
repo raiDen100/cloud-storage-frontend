@@ -25,10 +25,12 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VideoInfoComponent } from './components/video-info/video-info.component';
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 
 const routes: Routes = [
   {path: "", component: LoginFormComponent},
+  {path: "register", component: RegisterFormComponent},
   {
     path: "drive",
     component: FolderViewComponent,
@@ -57,7 +59,8 @@ const routes: Routes = [
     FolderViewComponent,
     RenameDialogComponent,
     VideoPlayerComponent,
-    VideoInfoComponent
+    VideoInfoComponent,
+    RegisterFormComponent
   ],
     imports: [
         BrowserModule,

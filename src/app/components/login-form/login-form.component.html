@@ -1,62 +1,38 @@
-
-
-<div class="offset-5 col-2">
-    <div class="row" style="height: 200px">
-  
-    </div>
-    <div class="row" style="background-color: red;">
-<form>
+<div class="row">
+  <div class="offset-5 col-2 card">
+    <div class="row">
+  <form>
     <!-- Email input -->
     <div class="form-outline mb-4">
-      <input name="username" type="text" id="form2Example1" class="form-control" [(ngModel)]="username"/>
+      <input type="email" id="form2Example1" class="form-control" name="username" [(ngModel)]="username"/>
       <label class="form-label" for="form2Example1">Username</label>
     </div>
-  
+
     <!-- Password input -->
     <div class="form-outline mb-4">
-      <input name="password" type="password" id="form2Example2" class="form-control" [(ngModel)]="password"/>
+      <input type="password" id="form2Example2" class="form-control" name="password" [(ngModel)]="password"/>
       <label class="form-label" for="form2Example2">Password</label>
     </div>
-  
-    <!-- 2 column grid layout for inline styling -->
-    <div class="row mb-4">
-      <div class="col d-flex justify-content-center">
-        <!-- Checkbox -->
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-          <label class="form-check-label" for="form2Example31"> Remember me </label>
-        </div>
-      </div>
-  
-      <div class="col">
-        <!-- Simple link -->
-        <a href="#!">Forgot password?</a>
-      </div>
+
+    <div *ngIf="loginErrorCode === -2" class="alert alert-danger" role="alert">
+      Username and password must be at least 3 characters long
     </div>
-  
+    <div *ngIf="loginErrorCode === 403" class="alert alert-danger" role="alert">
+      Wrong username or password
+    </div>
+    <div *ngIf="loginErrorCode !== 403 && loginErrorCode !== -2 && loginErrorCode !== -1" class="alert alert-danger" role="alert">
+      Unknown HTTP error
+    </div>
+
     <!-- Submit button -->
     <button type="button" class="btn btn-primary btn-block mb-4" (click)="submit()">Sign in</button>
-  
+
     <!-- Register buttons -->
     <div class="text-center">
-      <p>Not a member? <a href="#!">Register</a></p>
-      <p>or sign up with:</p>
-      <button type="button" class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-  
-      <button type="button" class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-google"></i>
-      </button>
-  
-      <button type="button" class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-twitter"></i>
-      </button>
-  
-      <button type="button" class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-github"></i>
-      </button>
+      <p>Don't have an account? <a [routerLink]="'register'">Register</a></p>
     </div>
   </form>
+
     </div>
   </div>
+</div>

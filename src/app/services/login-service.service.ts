@@ -15,7 +15,9 @@ export class LoginServiceService {
     private httpClient: HttpClient
   ) { }
 
-  private authUrl = environment.baseUrl + "/authenticate";
+  private baseUrl = environment.baseUrl
+  private authUrl = this.baseUrl + "/authenticate";
+  private registerUrl = this.baseUrl + "/user";
 
   login(username: string, password: string){
     const payload = new LoginRequest(username, password);
@@ -31,5 +33,14 @@ export class LoginServiceService {
 
   sendLoginRequest(loginRequest: LoginRequest){
     return this.httpClient.post<Token>(this.authUrl, loginRequest)
+  }
+
+  sendRegisterRequest(registerRequest: any){
+    return this.httpClient.post<string>(this.registerUrl, registerRequest)
+  }
+
+  register(username: string, displayName: string, password: string) {
+    const payload = {"username": username, "displayName": displayName, "password": password}
+    return this.sendRegisterRequest(payload);
   }
 }
