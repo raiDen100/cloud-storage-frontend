@@ -27,7 +27,7 @@ export class DndDirective {
   @HostListener("dragover", ["$event"]) onDragOver(evt: Event){
     evt.preventDefault();
     evt.stopPropagation();
-    this.highlight('yellow');
+    this.highlight('rgba(70, 196, 27, 0.9)');
   }
 
   @HostListener("dragleave", ["$event"]) onDragLeave(evt: Event){
