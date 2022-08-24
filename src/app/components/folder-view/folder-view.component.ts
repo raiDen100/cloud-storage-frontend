@@ -55,7 +55,6 @@ export class FolderViewComponent implements OnInit {
   }
 
   hideDialogWindows() {
-    //this.showVideoPlayer = false;
     this.playerService.isPlaying.next(false);
   }
 
@@ -71,5 +70,10 @@ export class FolderViewComponent implements OnInit {
       this.uploadService.addFilesToUpload(files, this.uploadFolder);
       $event.target.value = "";
     }
+  }
+
+  logout() {
+    localStorage.removeItem("token")
+    this.router.navigate([''])
   }
 }

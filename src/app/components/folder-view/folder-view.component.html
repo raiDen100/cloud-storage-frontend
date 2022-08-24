@@ -1,10 +1,15 @@
-<div class="" (click)="onClick($event)">
+<div class="row" (click)="onClick($event)">
   <router-outlet name="folder-view"></router-outlet>
+  <div class="offset-2 col-8">
   <app-folder-grid-view></app-folder-grid-view>
+  </div>
   <app-video-player [hidden]="!showVideoPlayer"></app-video-player>
   <app-video-info *ngIf="showVideoInfo"></app-video-info>
   <input type="file" #fileinput (change)="onFileInputChange($event)" [hidden]="true" multiple/>
-  <div class="col-2">
+  <div class="col-2 col-lg-1 m-lg-1">
+    <div class="row logout-btn">
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
     <div class="row">
       <app-upload></app-upload>
     </div>
