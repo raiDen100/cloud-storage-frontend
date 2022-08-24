@@ -22,7 +22,6 @@ export class UploadService {
   url: string = environment.baseUrl + "/file/upload";
 
   addFilesToUpload(files: any[], folder: BasicFolder){
-    console.log(files)
     if (files instanceof FileList)
       for(const item of files)
         this.filesSubject.next({file: item, folder: folder});

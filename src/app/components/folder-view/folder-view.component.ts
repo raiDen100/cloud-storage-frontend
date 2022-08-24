@@ -72,7 +72,6 @@ export class FolderViewComponent implements OnInit {
   onFileInputChange($event: any) {
     $event.preventDefault();
     $event.stopPropagation();
-    console.log($event)
 
     const files = $event.target.files;
 
