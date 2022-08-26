@@ -24,6 +24,7 @@ export class PlayerService {
 
   playVideo(fileId: string){
     this.isPlaying.next(true);
+    this.videoId = fileId;
     this.onPlayVideo.emit(`${this.baseUrl}/download/${fileId}`);
   }
 
