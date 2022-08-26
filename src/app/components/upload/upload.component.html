@@ -1,6 +1,9 @@
 <div class="upload-status-box col-2" (click)="onClick()">
     <ul class="list-group">
-      <li *ngFor="let r of uploadFiles" class="list-group-item list-group-item-action" role="tablist">
+      <li *ngFor="let r of errorFiles" (click)="removeErrorFile(r)" [title]="r.file.name" class="list-group-item list-group-item-action list-group-item-danger" role="tablist">
+        Error uploading: {{r.file.name}}
+      </li>
+      <li *ngFor="let r of uploadFiles" [title]="r.file.name" class="list-group-item list-group-item-action" role="tablist">
         {{r.file.name}}
         <br>
         <div class="progress">

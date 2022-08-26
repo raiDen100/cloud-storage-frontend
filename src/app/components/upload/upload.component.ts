@@ -24,6 +24,7 @@ export class UploadComponent implements OnInit {
 
   promiseSubscription: Subscription;
   fileSubscription: Subscription;
+  errorFiles: any[] = [];
 
 
   constructor(
@@ -41,6 +42,7 @@ export class UploadComponent implements OnInit {
     })
 
     this.promiseSubscription = this.onPromise.subscribe(x => {
+      this.errorFiles = []
       this.uploadFiles.push({file: x.f, percentage: 0, folder: x.r.folder, status: "pending"});
       if(!this.shouldDownload){
         this.upload();
@@ -94,7 +96,7 @@ export class UploadComponent implements OnInit {
     const r = this.uploadFiles[0];
 
     r.status = "uploading"
-    this.uploadService.upload(r.file, r.folder).subscribe(event =>{
+    this.uploadService.upload(r.file, r.folder).subscribe((event: any) =>{
       this.reportStatus(r.file, event)
       if(event.type === 4 && event.status === 200){
         this.uploadFiles.shift();
@@ -102,6 +104,9 @@ export class UploadComponent implements OnInit {
         this.uploadService.onFileUpload.emit(event.body);
         this.upload();
       }
+    },(error) => {
+      this.errorFiles.push(this.uploadFiles.shift());
+      this.upload();
     });
   }
 
@@ -123,6 +128,13 @@ export class UploadComponent implements OnInit {
   }
 
   onClick(){
+
+  }
+
+  removeErrorFile(file: any) {
+    const index = this.errorFiles.findIndex((f) => f === file)
+    if (index > -1)
+      this.errorFiles.splice(index, 1);
 
   }
 
