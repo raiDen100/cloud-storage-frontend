@@ -36,7 +36,7 @@ export class RenameDialogComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  rename($event: MouseEvent){
+  rename(){
     if(this.resource.folderType !== undefined){
       this.folderService.renameFolder(this.resource, this.newName).subscribe(data =>{
         this.onNameChange.emit(true);

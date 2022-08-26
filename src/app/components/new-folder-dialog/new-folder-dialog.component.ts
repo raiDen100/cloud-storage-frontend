@@ -33,8 +33,7 @@ export class NewFolderDialogComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  addFolder($event: MouseEvent){
-    $event.stopPropagation();
+  addFolder(){
 
     this.folderService.createNewFolder(this.parentFolder, this.newFolderName)
     .subscribe((data) => {

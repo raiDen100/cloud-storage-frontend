@@ -1,6 +1,6 @@
 <div class="col-8 rename-dialog" (click)="closeCard($event);">
   <div class="row">
-    <div class="offset-md-4 col-md-4 card" (click)="mainClick($event)">
+    <div class="offset-md-4 col-md-4 card" (keydown.enter)="rename()" (click)="mainClick($event)">
       <div class="row">
         <h4>
           Rename resource
@@ -16,7 +16,7 @@
           <input #resourceName class="form-control" type="text" name="" id="" [(ngModel)]="newName" [autofocus]>
         </div>
         <div class="col-2">
-          <button class="btn btn-primary" (click)="rename($event)">Save</button>
+          <button class="btn btn-primary" (click)="rename()">Save</button>
         </div>
       </div>
     </div>

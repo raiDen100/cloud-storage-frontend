@@ -1,6 +1,6 @@
 <div class="col-8 new-folder-dialog" (click)="closeCard($event);">
   <div class="row">
-    <div class="offset-md-4 col-md-4 card" (click)="mainClick($event)">
+    <div class="offset-md-4 col-md-4 card" (keydown.enter)="addFolder()" (click)="mainClick($event)">
       <div class="row">
         <h4>
           Create new folder
@@ -16,7 +16,7 @@
           <input class="url-input form-control" #folderName type="text" name="" id="" [(ngModel)]="newFolderName" [autofocus]>
         </div>
         <div class="col-2">
-          <button class="btn btn-primary" (click)="addFolder($event)">Create</button>
+          <button class="btn btn-primary" (click)="addFolder()">Create</button>
         </div>
       </div>
     </div>
