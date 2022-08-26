@@ -17,7 +17,9 @@ export class CurrentFolderContextMenuComponent implements OnInit {
   @Output("onCreateNewFolder")
   onCreateNewFolder = new EventEmitter();
 
-  constructor(private downloadService: DownloadService, private uploadService: UploadService) { }
+  constructor(
+    private downloadService: DownloadService,
+    private uploadService: UploadService) { }
 
   ngOnInit(): void {
   }

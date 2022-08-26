@@ -5,8 +5,7 @@
       (keydown)="onKeyDown($event)"
       (click)="onPlayerClick($event)"
       [src]="videoUrl" controls
-      (error)="playerError($event)"
-      (load)="onLoad($event)">
+      (error)="playerError($event)">
       <source [src]="videoUrl">
       Your browser does not support the video tag.
     </video>

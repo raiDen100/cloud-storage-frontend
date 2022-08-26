@@ -15,7 +15,11 @@ export class LoginFormComponent implements OnInit {
 
   loginErrorCode: number = -1;
 
-  constructor(private loginService: LoginServiceService, private router: Router, private route: ActivatedRoute, private jwtTokenService: JWTTokenService) { }
+  constructor(
+    private loginService: LoginServiceService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private jwtTokenService: JWTTokenService) { }
 
   submit(){
     if (this.username.length < 3 || this.password.length < 3){

@@ -13,8 +13,9 @@ import {environment} from "../../environments/environment";
 })
 export class DownloadService {
 
-  constructor(private loginService:LoginServiceService, private httpClient: HttpClient, private resourceService: ResourceService) { }
-
+  constructor(private loginService:LoginServiceService,
+              private httpClient: HttpClient,
+              private resourceService: ResourceService) { }
 
   url: string = environment.baseUrl + "/download"
 

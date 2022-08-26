@@ -10,7 +10,6 @@ export class SelectionService {
 
   selectedResources : (Folder | File)[] = [];
 
-
   constructor() { }
 
   updateSelection(resource: (Folder | File)[]){

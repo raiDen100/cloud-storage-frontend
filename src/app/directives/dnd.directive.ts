@@ -22,7 +22,9 @@ export class DndDirective {
   resourcesMoved = new EventEmitter();
 
 
-  constructor(private el: ElementRef, private selectionService: SelectionService, private resourceService: ResourceService) { }
+  constructor(private el: ElementRef,
+              private selectionService: SelectionService,
+              private resourceService: ResourceService) { }
 
   @HostListener("dragover", ["$event"]) onDragOver(evt: Event){
     evt.preventDefault();

@@ -11,7 +11,6 @@ export class FileService {
 
   private baseUrl: string = environment.baseUrl + "/file";
 
-  onFileChange = new EventEmitter();
   onFileDelete = new EventEmitter();
 
   shouldHaveThumbnail = [
@@ -21,7 +20,8 @@ export class FileService {
   ]
 
 
-  constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
+  constructor(private loginService: LoginServiceService,
+              private httpClient: HttpClient) { }
 
   deleteFile(file: File){
     const url = `${this.baseUrl}/delete/${file.id}`;

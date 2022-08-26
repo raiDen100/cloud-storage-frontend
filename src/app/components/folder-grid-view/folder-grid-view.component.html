@@ -23,7 +23,7 @@
                 (select)="updateSelection($event)">
             <div class="col">
                 <div class="row">
-                    <div class="col-xs-12 col-md-3 col-lg-2 resource" (click)="onDoubleClick()"
+                    <div class="col-xs-12 col-md-3 col-lg-2 resource" (dblclick)="onDoubleClick($event)"
                     *ngIf="currentFolder.parentFolder != null"
                     (filesDropped)="handleFileUpload($event, currentFolder.parentFolder)"
                     [appDnd]="currentFolder.parentFolder"

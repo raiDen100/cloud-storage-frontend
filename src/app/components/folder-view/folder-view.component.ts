@@ -20,8 +20,7 @@ export class FolderViewComponent implements OnInit {
     private router: Router,
     private jwtTokenService: JWTTokenService,
     private playerService: PlayerService,
-    private uploadService: UploadService
-  ) { }
+    private uploadService: UploadService) { }
 
   showVideoPlayer: boolean = false;
   showVideoInfo: boolean = false;

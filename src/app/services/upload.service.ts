@@ -11,9 +11,8 @@ import {environment} from "../../environments/environment";
 })
 export class UploadService {
 
-  constructor(private loginService:LoginServiceService, private httpClient: HttpClient) { }
-
-  //filesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  constructor(private loginService:LoginServiceService,
+              private httpClient: HttpClient) { }
 
   filesSubject = new EventEmitter();
   onFileUpload = new EventEmitter();

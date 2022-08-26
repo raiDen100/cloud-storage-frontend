@@ -14,8 +14,6 @@ export class VideoPlayerComponent implements OnInit {
   @ViewChild('player')
   videoPlayer: ElementRef;
 
-  shouldPlay = false;
-
   onPlayVideoSubscription: Subscription;
   isPlayingSubscription: Subscription;
 
@@ -40,15 +38,11 @@ export class VideoPlayerComponent implements OnInit {
   playerError($event: ErrorEvent) {
     this.playerService.isPlaying.next(false);
     if (this.videoUrl != "" && this.videoUrl !== undefined)
-    this.playerService.playerError.next(true);
+      this.playerService.playerError.next(true);
   }
 
   onClick() {
     this.playerService.isPlaying.next(false);
-  }
-
-  onLoad($event: any){
-
   }
 
   private managePlayer(isPlaying: boolean) {

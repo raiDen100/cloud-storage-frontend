@@ -11,9 +11,7 @@ import {environment} from "../../environments/environment";
 })
 export class LoginServiceService {
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private httpClient: HttpClient) { }
 
   private baseUrl = environment.baseUrl
   private authUrl = this.baseUrl + "/authenticate";

@@ -25,23 +25,14 @@ export class GridFolderComponent implements OnInit {
   @Output("onDoubleClick")
   onDoubleClick = new EventEmitter();
 
-  isSingleClick: boolean = false;
   isSelected:boolean = false;
 
   faFolder = faFolder;
 
-
-  constructor(
-    private uploadService: UploadService,
-    private selectionService: SelectionService,
-    private loginService: LoginServiceService,
-    private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-
-
 
   doubleClick($event: MouseEvent){
     $event.stopPropagation();

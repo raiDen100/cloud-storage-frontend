@@ -21,7 +21,9 @@ export class RenameDialogComponent implements OnInit {
   @Output("onNameChange")
   onNameChange = new EventEmitter();
 
-  constructor(private fileService: FileService, private folderService: FolderService) { }
+  constructor(
+    private fileService: FileService,
+    private folderService: FolderService) { }
 
   ngOnInit(): void {
     this.newName = this.resource.displayName;

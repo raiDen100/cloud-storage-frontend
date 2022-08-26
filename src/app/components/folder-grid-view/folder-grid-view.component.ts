@@ -39,8 +39,6 @@ export class FolderGridViewComponent implements OnInit {
   newFolderDialog = false;
   renameDialog = false;
 
-  isSingleClick: boolean = false;
-
   newFolderParent: Folder;
   renameResource: (Folder | File);
 
@@ -58,8 +56,7 @@ export class FolderGridViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private uploadService: UploadService,
-    private selectionService: SelectionService
-    ) { }
+    private selectionService: SelectionService) { }
 
   ngOnInit(): void {
 
@@ -157,17 +154,9 @@ export class FolderGridViewComponent implements OnInit {
     this.getFolderContent(this.currentFolder.parentFolder.id);
   }
 
-  onDoubleClick(){
-
-    if(this.isSingleClick){
-      this.openParentFolder()
-      this.isSingleClick = false;
-    }
-    this.isSingleClick = true;
-    setTimeout(()=>{
-      this.isSingleClick = false
-    },250)
-
+  onDoubleClick($event: MouseEvent){
+    $event.stopPropagation();
+    this.openParentFolder();
   }
 
 
@@ -255,12 +244,6 @@ export class FolderGridViewComponent implements OnInit {
     $event.stopPropagation()
 
     this.hideContextMenus()
-  }
-
-  onRightClick(event: MouseEvent){
-    event.preventDefault();
-
-    this.showCurrentFolderContextMenu({x: event.clientX, y: event.clientY, folder: this.currentFolder});
   }
 
   createNewFolder($event: Folder){

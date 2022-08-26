@@ -13,8 +13,9 @@ export class ResourceService {
 
   private baseUrl: string = environment.baseUrl + "/resources";
 
-  constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
-
+  constructor(
+    private loginService: LoginServiceService,
+    private httpClient: HttpClient) { }
 
   moveResources(folder: BasicFolder, resources: (Folder | File)[]){
     const url = `${this.baseUrl}/moveto/${folder.id}`;

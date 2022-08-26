@@ -13,7 +13,8 @@ import {environment} from "../../environments/environment";
 })
 export class FolderService {
 
-  constructor(private loginService: LoginServiceService, private httpClient: HttpClient) { }
+  constructor(private loginService: LoginServiceService,
+              private httpClient: HttpClient) { }
 
 
   private baseUrl: string = environment.baseUrl + "/folder";

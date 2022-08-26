@@ -14,7 +14,9 @@ export class RegisterFormComponent implements OnInit {
 
   loginErrorCode: number = -1;
 
-  constructor(private loginService: LoginServiceService, private router: Router) { }
+  constructor(
+    private loginService: LoginServiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }

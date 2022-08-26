@@ -13,23 +13,16 @@ import {environment} from "../../../../environments/environment";
 })
 export class GridFileComponent implements OnInit {
 
-
-
-
   constructor(
     private downloadService: DownloadService,
     private playerService: PlayerService,
-    private fileService: FileService
-    ) { }
+    private fileService: FileService) { }
 
   @Input("file")
   file: File;
 
   @Output()
   contextMenu = new EventEmitter();
-
-  // @Output("onDoubleClick")
-  // onDoubleClick = new EventEmitter();
 
   @Output("onThumbnailLoaded")
   onThumbnailLoaded = new EventEmitter();
