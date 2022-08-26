@@ -43,16 +43,9 @@ export class GridFolderComponent implements OnInit {
 
 
 
-  onClick($event: MouseEvent){
-
-    if(this.isSingleClick){
-      this.onDoubleClick.emit(this.folder);
-      this.isSingleClick = false;
-    }
-    this.isSingleClick = true;
-    setTimeout(()=>{
-      this.isSingleClick = false
-    },250)
+  doubleClick($event: MouseEvent){
+    $event.stopPropagation();
+    this.onDoubleClick.emit(this.folder);
   }
 
   onRightClick($event: MouseEvent){

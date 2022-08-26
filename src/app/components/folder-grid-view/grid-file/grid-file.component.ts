@@ -52,8 +52,7 @@ export class GridFileComponent implements OnInit {
   }
 
   onDoubleClick($event: MouseEvent){
-    //$event.stopPropagation()
-
+    $event.stopPropagation()
     this.downloadFile()
   }
 
