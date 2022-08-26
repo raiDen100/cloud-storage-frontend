@@ -1,4 +1,4 @@
-<div class="col-8 video-info" (click)="closeCard($event)">
+<div class="col-8 video-info" (keydown.escape)="closeCard()" (click)="closeCard()">
   <div class="row">
     <div class="offset-md-4 col-md-4 card" (click)="onCardClick($event)">
       <div class="row">

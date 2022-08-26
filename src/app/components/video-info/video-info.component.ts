@@ -20,6 +20,10 @@ export class VideoInfoComponent implements OnInit {
     this.url = this.getVideoUrl();
   }
 
+  ngAfterViewInit(){
+    this.resourceUrlInput.nativeElement.focus();
+  }
+
   onButtonClick($event: MouseEvent){
     $event.stopPropagation();
 
@@ -30,9 +34,7 @@ export class VideoInfoComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  closeCard($event: MouseEvent){
-    $event.stopPropagation();
-
+  closeCard(){
     this.playerService.playerError.next(false);
   }
   getVideoUrl(){

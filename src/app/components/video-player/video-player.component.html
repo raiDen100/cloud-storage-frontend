@@ -1,4 +1,4 @@
-<div class="col-8 video-player" (click)="onClick($event)">
+<div class="col-8 video-player" (keydown.escape)="onClick()" (click)="onClick()">
   <div class="row">
     <video
       #player

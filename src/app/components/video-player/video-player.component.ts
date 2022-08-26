@@ -43,8 +43,7 @@ export class VideoPlayerComponent implements OnInit {
     this.playerService.playerError.next(true);
   }
 
-  onClick($event: MouseEvent) {
-    $event.stopPropagation();
+  onClick() {
     this.playerService.isPlaying.next(false);
   }
 

@@ -43,8 +43,7 @@ export class NewFolderDialogComponent implements OnInit {
     });
   }
 
-  closeCard($event: MouseEvent) {
-    $event.stopPropagation();
+  closeCard() {
     this.folderService.isNewFolderDialogOpen.emit(false);
   }
 }
